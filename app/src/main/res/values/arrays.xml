@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="entries">
+        <item name = "1" />
+        <item name = "2"/>
+        <item name = "3"/>
+        <item name = "4"/>
+        <item name = "5"/>
+    </string-array>
+    <string-array name="entryvalue">
+        <item name = "1" />
+        <item name = "2"/>
+        <item name = "3"/>
+        <item name = "4"/>
+        <item name = "5"/>
+    </string-array>
+    <string-array name="defaultvalue">
+        <item name = "2"/>
+        <item name = "4"/>
+        <item name = "5"/>
+    </string-array>
+</resources>

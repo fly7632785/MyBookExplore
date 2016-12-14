@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <CheckBoxPreference
+        android:key="1"
+        android:summary="abc"
+        android:title="music"></CheckBoxPreference>
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="autoBack"
+        android:summaryOff="关闭"
+        android:summaryOn="开启"
+        android:title="自动回复" />
+
+    <!-- 这里是我自定义的Preference,详细代码请看下面
+
+android:dialogLayout="@layout/setting_widthseekbar"
+这个就是弹出窗口后要显示的布局文件..这个大家想显示成什么样子.自己设置了
+
+-->
+    <com.jafir.mybookexplore.SeekBarPreference
+
+        android:dialogLayout="@layout/setting_widthseekbar"
+        android:dialogTitle="333"
+        android:key="sss"
+        android:persistent="true"
+        android:title="111" />
+
+    <PreferenceCategory android:title="SMS 助手">
+
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="smsSilence"
+            android:summaryOff="关闭"
+            android:summaryOn="开启"
+            android:title="静音" />
+
+        <PreferenceScreen android:title="更多选项">
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="cb21"
+                android:summaryOff="关闭"
+                android:summaryOn="开启"
+                android:title="功能1" />
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="cb22"
+                android:summaryOff="停用"
+                android:summaryOn="使用"
+                android:title="功能2" />
+
+            <ListPreference
+                android:dialogTitle="请选择论坛"
+                android:entries="@array/entries"
+                android:entryValues="@array/entryvalue"
+                android:key="list1"
+                android:defaultValue="2"
+                android:enabled="true"
+                android:summary="开发论坛"
+                android:title="android forum" />
+
+            <EditTextPreference
+                android:defaultValue="Hello EditTextPreference"
+                android:dialogTitle="输入设置"
+                android:key="et1"
+                android:summary="点击输入"
+                android:title="EditTextPreference Sample" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="其他选项">
+
+        <RingtonePreference
+            android:key="rt1"
+            android:summary="选择铃声"
+            android:title="RingtonePreference Sample" />
+
+        <Preference
+            android:key="aa"
+            android:summary="测试中"
+            android:title="测试" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="jafir">
+        <MultiSelectListPreference
+            android:dialogLayout="@layout/setting_widthseekbar"
+            android:entries="@array/entries"
+            android:entryValues="@array/entryvalue"
+            android:negativeButtonText="1"
+            android:key="MultiSelectListPreference"
+            android:positiveButtonText="2"
+            android:defaultValue="@array/defaultvalue"
+            android:title="MultiSelectListPreference">
+
+        </MultiSelectListPreference>
+        <PreferenceScreen
+            android:summary="通过意图启动一个Activity"
+            android:title="意图偏好">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.baidu.com" />
+        </PreferenceScreen>
+        <SwitchPreference
+            android:title="SwitchPreference"
+            android:defaultValue="1"
+            >
+
+        </SwitchPreference>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
