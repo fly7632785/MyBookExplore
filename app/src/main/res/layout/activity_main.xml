@@ -7,6 +7,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.jafir.mybookexplore.MainActivity">
+    <com.jafir.mybookexplore.widget.TestXfermodeView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,6 +24,10 @@
 
 
             <com.jafir.mybookexplore.widget.RoundImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/logo" />
+            <com.jafir.mybookexplore.widget.CircularImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@mipmap/logo" />
@@ -45,6 +53,9 @@
                 mine:insideThickness="0dp"
                 mine:outsideThickness="0dp"
                 android:src="@mipmap/logo" />
+
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -88,6 +99,7 @@
     </LinearLayout>
 
     <com.jafir.mybookexplore.HorizotalScrollViewEx
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

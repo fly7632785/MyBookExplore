@@ -63,8 +63,8 @@ public class Xfermodes extends AppCompatActivity {
     }
 
     private static class SampleView extends View {
-        private static final int W = 210;
-        private static final int H = 220;
+        private static final int W = 200;
+        private static final int H = 200;
         private static final int ROW_MAX = 4;   // number of samples per row
 
         private Bitmap mSrcB;
@@ -100,8 +100,8 @@ public class Xfermodes extends AppCompatActivity {
         public SampleView(Context context) {
             super(context);
 
-            mDstB = makeDst(W, H);
             mSrcB = makeSrc(W, H);
+            mDstB = makeDst(W, H);
 
             // make a ckeckerboard pattern
             Bitmap bm = Bitmap.createBitmap(new int[] { 0xFFFFFFFF, 0xFFCCCCCC,
@@ -149,9 +149,6 @@ public class Xfermodes extends AppCompatActivity {
                                           Canvas.FULL_COLOR_LAYER_SAVE_FLAG |
                                           Canvas.CLIP_TO_LAYER_SAVE_FLAG);
                 canvas.translate(x, y);
-                /**
-                 * 先画圆 后画方块
-                 */
                 canvas.drawBitmap(mSrcB, 0, 0, paint);
                 paint.setXfermode(sModes[i]);
                 canvas.drawBitmap(mDstB, 0, 0, paint);

@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.jafir.mybookexplore.R;
@@ -35,7 +36,7 @@ import com.jafir.mybookexplore.R;
 public class MyRoundImageView extends ImageView {
 
 
-    private int DEFAULT_COLOR= 0xffffffff;
+    private int DEFAULT_COLOR = 0xffffffff;
     //内圈厚度
     private int insideThickness = 2;
     //外圈厚度
@@ -129,6 +130,9 @@ public class MyRoundImageView extends ImageView {
         }
 
 
+//        setLayerType(LAYER_TYPE_SOFTWARE,null);
+        Log.d("debug","mine ondraw is?"+canvas.isHardwareAccelerated());
+
     }
 
 
@@ -191,17 +195,59 @@ public class MyRoundImageView extends ImageView {
 
         Canvas canvas = new Canvas(outBitmap);
         Paint paint = new Paint();
+        //剪切的矩形
         Rect rect = new Rect(0, 0, scaleBitmap.getWidth(), scaleBitmap.getHeight());
+        //显示的矩形  如果这个比剪切的小 那么会压缩
+        Rect rect1 = new Rect(0, 0, scaleBitmap.getWidth(), scaleBitmap.getHeight());
         paint.setAntiAlias(true);
         //对位图进行滤波处理，如果该项设置为true，则图像在动画进行中会滤掉对Bitmap图像的优化操作，加快显示
         paint.setFilterBitmap(true);
         paint.setDither(true);
         canvas.drawARGB(0, 0, 0, 0);
+        /**
+         *
+         *
+         * 第一种
+         * 先画 circle
+         * setXfermode Src_in
+         * 再画circle
+         *
+         * 第二种 新开一个bitmap在bitamp里面画circle
+         * 就可以实现
+         * 先画 图片
+         * setXfermode Dst_in
+         * 再画 circle
+         *
+         */
+
+        //第一种
         canvas.drawCircle(scaleBitmap.getWidth() / 2, scaleBitmap.getHeight() / 2, scaleBitmap.getWidth() / 2, paint);
 
-        // 取两层绘制交集。显示上层。
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(scaleBitmap, rect, rect, paint);
+
+        canvas.drawBitmap(scaleBitmap, rect, rect1, paint);
+//
+//        Log.d("debug","mine is?"+canvas.isHardwareAccelerated());
+        //第二种
+//        canvas.drawBitmap(scaleBitmap, rect, rect1, paint);
+//
+//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+//
+//        Bitmap bitmap = Bitmap.createBitmap(scaleBitmap.getWidth(), scaleBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+//        Canvas canvas1 = new Canvas(bitmap);
+//        Paint p = new Paint();
+//        canvas1.drawARGB(0, 0, 0, 0);
+//        canvas1.drawCircle(scaleBitmap.getWidth() / 2, scaleBitmap.getHeight() / 2, scaleBitmap.getWidth() / 2, p);
+//        canvas.drawBitmap(bitmap, rect, rect1, paint);
+//
+
+//
+
+
+//        Bitmap b
+//                = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+//        canvas.drawBitmap(b,rect, rect, paint);
+
 
         //置空 回收
         currentBitmap = null;
@@ -274,7 +320,7 @@ public class MyRoundImageView extends ImageView {
     }
 
     public void setDefaultOutBorder() {
-        setOutBorder(2,DEFAULT_COLOR);
+        setOutBorder(2, DEFAULT_COLOR);
     }
 
     public void setInsideThickness(int insideThickness) {
