@@ -121,10 +121,13 @@ public class CircularImageView extends ImageView {
             bitmap = Bitmap.createBitmap(imageBitmap, (imageBitmap.getWidth() / 2) - (imageBitmap.getHeight() / 2),
                     0, imageBitmap.getHeight(), imageBitmap.getHeight());
         } else {
-            bitmap = Bitmap.createBitmap(imageBitmap, 0, (imageBitmap.getHeight() / 2) - (imageBitmap.getWidth() / 2),
-                    imageBitmap.getWidth(), imageBitmap.getWidth());
+            bitmap = Bitmap.createBitmap(imageBitmap, 0, 0,
+                    imageBitmap.getWidth(), imageBitmap.getHeight());
         }
-        return bitmap;
+
+        Bitmap scaleBitmap = Bitmap.createScaledBitmap(bitmap,width-20,height-20,true);
+
+        return scaleBitmap;
     }
 
     private Bitmap drawableToBitmap(Drawable d) {

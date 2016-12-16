@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -192,7 +193,7 @@ public class TranslationSearchView extends ViewGroup {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (w != oldw || h != oldh) {
-            if(getChildAt(0)!= null) {
+            if (getChildAt(0) != null) {
                 titlebarHeight = getChildAt(0).getMeasuredHeight();
             }
         }
@@ -230,6 +231,8 @@ public class TranslationSearchView extends ViewGroup {
         list.offsetTopAndBottom(off);
 
         lastOffY = offY;
+
+        Log.d("debug", "off:" + off + "scroll:" + header.getTop() + ":" + header.getBottom());
     }
 
     /**
@@ -239,21 +242,24 @@ public class TranslationSearchView extends ViewGroup {
      */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+
+
         // titlebar
         header = getChildAt(0);
-        if(header != null) {
+        if (header != null) {
             header.layout(0, 0 - offY, r, 0 - offY + titlebarHeight);
         }
+        Log.d("debug", "onlayout:" + header.getTop() + ":" + header.getBottom());
         // editText
         editText = getChildAt(1);
-        if(editText != null) {
+        if (editText != null) {
             int height1 = editText.getMeasuredHeight();
             editText.layout(0, header.getBottom(), r, header.getBottom() + height1);
         }
 
         // content
         content = getChildAt(2);
-        if(content !=null) {
+        if (content != null) {
             int contentB = 0;
             if (!isOpen) {
                 contentB = editText.getBottom() + content.getMeasuredHeight();
@@ -264,7 +270,7 @@ public class TranslationSearchView extends ViewGroup {
         }
         // 搜索结果的list
         list = getChildAt(3);
-        if(list != null) {
+        if (list != null) {
             int listB = 0;
             if (!isOpen) {
                 listB = editText.getBottom() + list.getMeasuredHeight();
@@ -298,7 +304,6 @@ public class TranslationSearchView extends ViewGroup {
 //							等到完全关闭了之后 再requestLayout一次 让titlebar重新layout在屏幕之外
                             if (offY == titlebarHeight) {
                                 requestLayout();
-                                lastOffY = 0;
                             }
 
 //							
@@ -339,18 +344,16 @@ public class TranslationSearchView extends ViewGroup {
                         public void onAnimationUpdate(ValueAnimator animation) {
                             offY = (Integer) animation.getAnimatedValue();
                             //比例
-                            float fraction  = animation.getAnimatedFraction();
+                            float fraction = animation.getAnimatedFraction();
                             BigDecimal alpha = new BigDecimal(offY).divide(
                                     new BigDecimal(titlebarHeight * 3), 4,
                                     BigDecimal.ROUND_UP);
                             float a = alpha.floatValue();
                             listLayout.setAlpha(a);
-                            requestLayout();
+//                            requestLayout();
 //							content.setPadding(0,0 , 0,titlebarHeight-offY);
 //							list.setPadding(0,0 , 0,titlebarHeight-offY);
-//							scroll(lastOffY - offY);
-
-
+                            scroll(lastOffY - offY);
                         }
                     });
             inAnimator.addListener(new Animator.AnimatorListener() {
