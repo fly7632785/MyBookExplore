@@ -17,13 +17,13 @@
         </activity>
         <activity android:name=".PreferenceScreenActivity" />
         <activity android:name=".widget.Xfermodes" />
-        <activity android:name=".Main2Activity" />
+        <activity android:name=".TestViewMove" />
         <activity android:name=".AnimatorActivity" />
         <activity
             android:name=".SearchActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".TestViewMove"></activity>
     </application>
 
 </manifest>

@@ -45,7 +45,6 @@ public class CircularImageView extends ImageView {
         float density = context.getResources().getDisplayMetrics().density;
         borderWidth = 4 * density;
         shadowRadius = 8 * density;
-
         paint = new Paint();
         paint.setAntiAlias(true);
 
@@ -109,7 +108,7 @@ public class CircularImageView extends ImageView {
         BitmapShader shader = new BitmapShader(imageBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 
         Matrix matrix = new Matrix();
-        matrix.setScale((float) canvasSize / (float) imageBitmap.getWidth(), (float) canvasSize / (float) imageBitmap.getHeight());
+        matrix.setScale((canvasSize) / (float) imageBitmap.getWidth(), (canvasSize) / (float) imageBitmap.getHeight());
         shader.setLocalMatrix(matrix);
 
         paint.setShader(shader);
@@ -125,7 +124,7 @@ public class CircularImageView extends ImageView {
                     imageBitmap.getWidth(), imageBitmap.getHeight());
         }
 
-        Bitmap scaleBitmap = Bitmap.createScaledBitmap(bitmap,width-20,height-20,true);
+        Bitmap scaleBitmap = Bitmap.createScaledBitmap(bitmap,width,height,true);
 
         return scaleBitmap;
     }

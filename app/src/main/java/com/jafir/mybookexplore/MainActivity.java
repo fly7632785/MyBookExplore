@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         final MyRoundImageView myRoundImageView = (MyRoundImageView) findViewById(R.id.myavatar);
         myRoundImageView.setOutBorder(10, getResources().getColor(R.color.colorPrimary));
         myRoundImageView.setInsideColor(getResources().getColor(R.color.colorAccent));
-        myRoundImageView.setInsideThickness(30);
+        myRoundImageView.setInsideThickness(0);
         findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,9 +55,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(MainActivity.this, Main2Activity.class));
+               startActivity(new Intent(MainActivity.this, TestViewMove.class));
             }
         });
+
+
 
     }
 
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private void toScreen(View view) {
         startActivity(new Intent(this, PreferenceScreenActivity.class));
     }
+
 
 
 }

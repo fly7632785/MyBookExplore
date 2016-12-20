@@ -9,7 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Toast;
 
-public class Main2Activity extends AppCompatActivity {
+public class TestViewMove extends AppCompatActivity {
 
     private View moveButton;
 
@@ -169,18 +169,24 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
-//        findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                moveButton = findViewById(R.id.move);
-//            }
-//        });
+        findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveButton.invalidate();
+            }
+        });
+        findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveButton.requestLayout();
+            }
+        });
 
         moveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(Main2Activity.this, "点击了", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TestViewMove.this, "点击了", Toast.LENGTH_SHORT).show();
             }
         });
 

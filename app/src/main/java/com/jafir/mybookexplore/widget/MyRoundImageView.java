@@ -25,7 +25,7 @@ import com.jafir.mybookexplore.R;
  * 1、首先考虑有哪些 可调变量 比如 内边框 外边框 的颜色 厚度 等
  * 2、初始化 一些东西 这里把drawable转化为我们更为方便操作的 bitmap
  * 3、先根据是否有内外边框 来绘制边框（默认没有外边框 但是有内边框）注意要是空心的
- * 4、然后就是绘制图像 大小为 imageView减去了边框之后的radius
+ * 4、然后就是绘制图像 大小为 i4mageView减去了边框之后的radius
  * 5、绘制图像的时候，要判断图片的长宽，取正方形，如果大了小了还要缩放
  * 6、然后创建新的画布，最后 画两次
  * 7、一次是圆圈 就是根据radius来画，一次是我们图像，
@@ -92,6 +92,7 @@ public class MyRoundImageView extends ImageView {
         int width = getWidth();
         int height = getHeight();
         int radius = 0;
+
         //两个颜色都不为0 且厚度不为0 则画 两个圈
         if ((insideColor != 0 && insideThickness != 0) && (outsideColor != 0 && outsideThickness != 0)) {
             //计算内圆的radius
@@ -271,6 +272,7 @@ public class MyRoundImageView extends ImageView {
         paint.setStrokeWidth(borderThickness);
         canvas.drawCircle(width / 2, height / 2, radius, paint);
     }
+
 
     private void initCurrentBitmap() {
         Bitmap temp = null;
