@@ -11,6 +11,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.jafir.mybookexplore.widget.MySwipeRefreshLayout;
+import com.jafir.mybookexplore.widget.MyViewpager;
 
 import java.util.ArrayList;
 import java.util.List;

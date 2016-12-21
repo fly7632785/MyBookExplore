@@ -1,4 +1,4 @@
-package com.jafir.mybookexplore;
+package com.jafir.mybookexplore.widget;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
@@ -11,6 +11,15 @@ import android.view.ViewGroup;
 
 /**
  * Created by jafir on 16/12/20.
+ * 优化viewpager 如果子view中布局很复杂
+ * 有一定的优化效果
+ * 主要是 把detach  attach 方法 protected变为public 供调用
+ * 其次，重写adapter的startUP方法
+ *
+ *
+ * 重写onIntercept是为了解决和swipeREfreshlayout的冲突
+ *
+ *
  */
 
 public class MyViewpager extends ViewPager {

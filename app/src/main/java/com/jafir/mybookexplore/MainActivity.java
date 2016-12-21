@@ -1,7 +1,12 @@
 package com.jafir.mybookexplore;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -49,28 +54,82 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(MainActivity.this, Xfermodes.class));
+                startActivity(new Intent(MainActivity.this, Xfermodes.class));
             }
         });
         findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(MainActivity.this, TestViewMove.class));
+                startActivity(new Intent(MainActivity.this, TestViewMove.class));
             }
         });
         findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(MainActivity.this, TestMyViewpagerActivity.class));
+                startActivity(new Intent(MainActivity.this, TestMyViewpagerActivity.class));
             }
         });
         findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(MainActivity.this, TestMyViewpagerActivity1.class));
+                startActivity(new Intent(MainActivity.this, TestMyViewpagerActivity1.class));
+            }
+        });
+        findViewById(R.id.button8).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TestScrollListViewActivity.class));
+            }
+        });
+        findViewById(R.id.button9).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TestScrollRecyclerViewActivity.class));
+            }
+        });
+        findViewById(R.id.button10).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendNotification();
             }
         });
 
+
+    }
+
+    /**
+     * 使用TaskStackBuilder
+     * 在notification跳转到pending界面之后
+     * 返回 回到主界面（无论主界面是否关闭）
+     * 原理：设置pending界面的父亲为主界面 （xml里面设置）
+     * 返回就会跳转父亲界面
+     * <p>
+     * 16以上使用
+     */
+    private void sendNotification() {
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher).setTicker("新资讯")
+                .setWhen(System.currentTimeMillis())
+                .setOngoing(false)
+                .setAutoCancel(true);
+        /**
+         * 关键代码
+         */
+        Intent intent = new Intent(this, TestScrollRecyclerViewActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(TestScrollRecyclerViewActivity.class);
+        stackBuilder.addNextIntent(intent);
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        /**
+         * 关键代码
+         */
+//       PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+//       intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(pendingIntent);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(1, mBuilder.build());
 
 
     }
@@ -82,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
     private void toScreen(View view) {
         startActivity(new Intent(this, PreferenceScreenActivity.class));
     }
-
 
 
 }

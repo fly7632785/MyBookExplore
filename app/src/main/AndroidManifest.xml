@@ -20,6 +20,11 @@
         <activity android:name=".TestViewMove" />
         <activity android:name=".TestMyViewpagerActivity" />
         <activity android:name=".TestMyViewpagerActivity1" />
+        <activity android:name=".TestScrollListViewActivity" />
+        <activity android:name=".TestScrollRecyclerViewActivity"
+            android:parentActivityName=".MainActivity"
+            >
+            </activity>
         <activity android:name=".AnimatorActivity" />
         <activity
             android:name=".SearchActivity"
