@@ -18,6 +18,8 @@
         <activity android:name=".PreferenceScreenActivity" />
         <activity android:name=".widget.Xfermodes" />
         <activity android:name=".TestViewMove" />
+        <activity android:name=".TestMyViewpagerActivity" />
+        <activity android:name=".TestMyViewpagerActivity1" />
         <activity android:name=".AnimatorActivity" />
         <activity
             android:name=".SearchActivity"
@@ -26,4 +28,5 @@
         <activity android:name=".TestViewMove"></activity>
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

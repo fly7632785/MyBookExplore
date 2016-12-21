@@ -58,6 +58,18 @@ public class MainActivity extends AppCompatActivity {
                startActivity(new Intent(MainActivity.this, TestViewMove.class));
             }
         });
+        findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               startActivity(new Intent(MainActivity.this, TestMyViewpagerActivity.class));
+            }
+        });
+        findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               startActivity(new Intent(MainActivity.this, TestMyViewpagerActivity1.class));
+            }
+        });
 
 
 

@@ -15,6 +15,13 @@ import com.jafir.mybookexplore.R;
 
 /**
  * Created by jafir on 16/12/19.
+ * 这种是以 shader的方式
+ * bitmapShader 处理SHapeDrawable
+ * 设置一个原型shape
+ * 然后传入原来的bitmap（处理缩放之后的图片）
+ * 显示出来
+ *
+ *
  */
 
 public class BitmapShaderRoundView extends View {

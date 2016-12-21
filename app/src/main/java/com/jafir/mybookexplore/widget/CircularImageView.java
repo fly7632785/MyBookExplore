@@ -183,6 +183,7 @@ public class CircularImageView extends ImageView {
         return result;
     }
 
+
     private int measureHeight(int measureSpecHeight) {
         int result;
         int specMode = MeasureSpec.getMode(measureSpecHeight);
