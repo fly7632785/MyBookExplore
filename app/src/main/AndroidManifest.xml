@@ -15,6 +15,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity-alias
+            android:name=".icon1"
+            android:enabled="false"
+            android:icon="@mipmap/logo"
+            android:label="换icon1"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity-alias>
+        <activity-alias
+            android:name=".icon2"
+            android:enabled="false"
+            android:icon="@mipmap/logo1"
+            android:label="换icon2"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity-alias>
         <activity android:name=".PreferenceScreenActivity" />
         <activity android:name=".widget.Xfermodes" />
         <activity android:name=".TestViewMove" />

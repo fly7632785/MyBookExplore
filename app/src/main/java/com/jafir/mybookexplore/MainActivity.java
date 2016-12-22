@@ -3,7 +3,9 @@ package com.jafir.mybookexplore;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
@@ -15,10 +17,20 @@ import com.jafir.mybookexplore.widget.Xfermodes;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private ComponentName mDefault;
+    private ComponentName mIcon1;
+    private ComponentName mIcon2;
+    private PackageManager mPm;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initIcomChange();
+
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +108,70 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void initIcomChange() {
+        mDefault = getComponentName();
+        mIcon1 = new ComponentName(getBaseContext(), "com.jafir.mybookexplore.icon1");
+        mIcon2 = new ComponentName(getBaseContext(), "com.jafir.mybookexplore.icon2");
+
+        mPm = getApplicationContext().getPackageManager();
+
+        findViewById(R.id.button11).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeDefault();
+            }
+        });
+        findViewById(R.id.button12).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeIcon1();
+            }
+        });
+        findViewById(R.id.button13).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeIcon2();
+            }
+        });
+
+
+    }
+
+    private void changeDefault() {
+        enableComponentName(mDefault);
+        disableComponentName(mIcon1);
+        disableComponentName(mIcon2);
+    }
+
+    private void changeIcon1() {
+
+        enableComponentName(mIcon1);
+        disableComponentName(mDefault);
+        disableComponentName(mIcon2);
+
+    }
+
+    private void changeIcon2() {
+        enableComponentName(mIcon2);
+        disableComponentName(mIcon1);
+        disableComponentName(mDefault);
+    }
+
+    private void disableComponentName(ComponentName c) {
+        mPm.setComponentEnabledSetting(c,
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP
+        );
+    }
+
+    private void enableComponentName(ComponentName c) {
+        mPm.setComponentEnabledSetting(c,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP
+        );
+    }
+
 
     /**
      * 使用TaskStackBuilder
