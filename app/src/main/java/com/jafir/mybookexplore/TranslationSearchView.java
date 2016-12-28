@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -145,6 +146,19 @@ public class TranslationSearchView extends ViewGroup {
     public TranslationSearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        super.onRestoreInstanceState(state);
+        Log.d("debug","onRestoreInstanceState");
+    }
+
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Log.d("debug","onSaveInstanceState");
+        return super.onSaveInstanceState();
     }
 
     /**

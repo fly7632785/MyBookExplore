@@ -7,32 +7,108 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.jafir.mybookexplore.widget.MyRoundImageView;
 import com.jafir.mybookexplore.widget.Xfermodes;
 
 public class MainActivity extends AppCompatActivity {
-
-
     private ComponentName mDefault;
     private ComponentName mIcon1;
     private ComponentName mIcon2;
     private PackageManager mPm;
+    private Button button;
 
+    private void change(String x) {
+        x+="123";
+    }
+    private void change(StringBuilder x) {
+        x.delete(0,x.length());
+        x.append("even");
+    }
+
+
+    /**
+     *  这个方法在 onstart （onRestore）之后
+     * @param savedInstanceState
+     */
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        int width = button.getWidth();
+        int height = button.getHeight();
+
+        int width1 = button.getMeasuredWidth();
+        int height1 = button.getMeasuredHeight();
+
+
+        Log.d("debug","onPostCreate:"+width);
+        Log.d("debug","onPostCreate:"+width1);
+
+    }
+
+    /**
+     * 在onREsume之后
+     */
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        int width = button.getWidth();
+        int height = button.getHeight();
+
+        int width1 = button.getMeasuredWidth();
+        int height1 = button.getMeasuredHeight();
+
+
+        Log.d("debug","onPostResume:"+width);
+        Log.d("debug","onPostResume:"+width1);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
+        /**
+         * 不能直接通过形参传入修改本来的string
+         *
+         * 如果非要 建议Stringbuilder
+         *
+         *
+         * 1.如果要操作少量的数据用 = String
+
+         　2.单线程操作字符串缓冲区 下操作大量数据 = StringBuilder
+
+         　3.多线程操作字符串缓冲区 下操作大量数据 = StringBuffer
+         *
+         *
+         *
+         */
+
+        String x = new String("goeasyway");
+        change(x);
+        Log.d("debug","X:"+x);
+
+        StringBuilder builder = new StringBuilder("jafir");
+        change(builder);
+        Log.d("debug","builder:"+builder);
+
+
         initIcomChange();
 
 
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+       button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toScreen(v);
@@ -109,8 +185,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void initIcomChange() {
-        mDefault = getComponentName();
+//        第一种  不行  启动别的之后，再启动 启动不了
+//        mDefault = getComponentName();
+//        第二种可行
+        mDefault = new ComponentName(getBaseContext(), "com.jafir.mybookexplore.MainActivity");
         mIcon1 = new ComponentName(getBaseContext(), "com.jafir.mybookexplore.icon1");
         mIcon2 = new ComponentName(getBaseContext(), "com.jafir.mybookexplore.icon2");
 
@@ -158,6 +238,10 @@ public class MainActivity extends AppCompatActivity {
         disableComponentName(mDefault);
     }
 
+    /**
+     * 关闭桌面图标
+     * @param c
+     */
     private void disableComponentName(ComponentName c) {
         mPm.setComponentEnabledSetting(c,
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED,

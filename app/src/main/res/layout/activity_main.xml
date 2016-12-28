@@ -23,6 +23,12 @@
         <com.jafir.mybookexplore.widget.BitmapShaderRoundView
             android:layout_width="50dp"
             android:layout_height="50dp" />
+
+        <ImageView
+            android:clickable="true"
+            android:layout_width="50dp"
+            android:src="@drawable/select_button"
+            android:layout_height="50dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -172,6 +178,9 @@
                 android:layout_height="wrap_content"
                 android:text="icon2" />
         </LinearLayout>
+
+
+
     </LinearLayout>
 
     <com.jafir.mybookexplore.HorizotalScrollViewEx

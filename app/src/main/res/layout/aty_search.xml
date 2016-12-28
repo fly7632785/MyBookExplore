@@ -4,6 +4,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:id="@+id/linear"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:text="1111"
+            android:id="@+id/youid"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <com.jafir.mybookexplore.TranslationSearchView
         android:id="@+id/searchview"
