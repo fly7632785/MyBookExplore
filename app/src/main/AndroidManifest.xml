@@ -49,6 +49,7 @@
         <activity android:name=".TestMyViewpagerActivity1" />
         <activity android:name=".TestScrollListViewActivity" />
         <activity android:name=".NewActivity" />
+        <activity android:name=".TestLoadDexActivity" />
         <activity android:name=".TestScrollRecyclerViewActivity"
             android:parentActivityName=".MainActivity"
             >
@@ -62,4 +63,6 @@
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>

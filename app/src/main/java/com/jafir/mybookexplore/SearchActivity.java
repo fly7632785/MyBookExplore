@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -29,11 +30,17 @@ public class SearchActivity extends AppCompatActivity {
     private ArrayAdapter mAdapter;
     private ArrayAdapter mSearchAdapter;
 
+    public static final String EXTRA_DEX_PATH = "extra.dex.path";
+    public static final String EXTRA_CLASS = "extra.class";
+    private String mClass;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_search);
+        mClass = getIntent().getStringExtra(EXTRA_CLASS);
 
+        Log.d("debug", "mClass=" + mClass );
         init();
     }
 

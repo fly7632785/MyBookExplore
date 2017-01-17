@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
+
+import static android.animation.ObjectAnimator.ofFloat;
 
 /**
  * Created by jafir on 16/12/12.
@@ -65,8 +68,6 @@ public class AnimatorActivity extends AppCompatActivity {
 //                a.start();
 
 
-
-
                 /**
                  * 另外一种 自己实现
                  */
@@ -118,9 +119,17 @@ public class AnimatorActivity extends AppCompatActivity {
         findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ObjectAnimator.ofFloat(v, "rotation", 0f,360f).setDuration(500).start();
+                v.setPivotX(0);
+                v.setPivotY(0);
+                ofFloat(v, "rotation", 0f, 45f).setDuration(500).start();
             }
         });
+
+        View view = findViewById(R.id.img);
+        ObjectAnimator a = ObjectAnimator.ofFloat(view, "rotation", 0f, 360f).setDuration(500);
+        a.setInterpolator(new LinearInterpolator());
+        a.setRepeatCount(-1);
+        a.start();
 
     }
 }

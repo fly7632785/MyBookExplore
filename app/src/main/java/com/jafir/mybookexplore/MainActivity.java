@@ -3,12 +3,15 @@ package com.jafir.mybookexplore;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +19,8 @@ import android.widget.Button;
 
 import com.jafir.mybookexplore.widget.MyRoundImageView;
 import com.jafir.mybookexplore.widget.Xfermodes;
+
+import static android.bluetooth.BluetoothDevice.EXTRA_CLASS;
 
 public class MainActivity extends AppCompatActivity {
     private ComponentName mDefault;
@@ -25,16 +30,18 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
 
     private void change(String x) {
-        x+="123";
+        x += "123";
     }
+
     private void change(StringBuilder x) {
-        x.delete(0,x.length());
+        x.delete(0, x.length());
         x.append("even");
     }
 
 
     /**
-     *  这个方法在 onstart （onRestore）之后
+     * 这个方法在 onstart （onRestore）之后
+     *
      * @param savedInstanceState
      */
     @Override
@@ -48,9 +55,8 @@ public class MainActivity extends AppCompatActivity {
         int height1 = button.getMeasuredHeight();
 
 
-        Log.d("debug","onPostCreate:"+width);
-        Log.d("debug","onPostCreate:"+width1);
-
+        Log.d("debug", "onPostCreate:" + width);
+        Log.d("debug", "onPostCreate:" + width1);
     }
 
     /**
@@ -67,16 +73,14 @@ public class MainActivity extends AppCompatActivity {
         int height1 = button.getMeasuredHeight();
 
 
-        Log.d("debug","onPostResume:"+width);
-        Log.d("debug","onPostResume:"+width1);
+        Log.d("debug", "onPostResume:" + width);
+        Log.d("debug", "onPostResume:" + width1);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
 
         /**
@@ -97,17 +101,17 @@ public class MainActivity extends AppCompatActivity {
 
         String x = new String("goeasyway");
         change(x);
-        Log.d("debug","X:"+x);
+        Log.d("debug", "X:" + x);
 
         StringBuilder builder = new StringBuilder("jafir");
         change(builder);
-        Log.d("debug","builder:"+builder);
+        Log.d("debug", "builder:" + builder);
 
 
         initIcomChange();
 
 
-       button = (Button) findViewById(R.id.button);
+        button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,6 +185,12 @@ public class MainActivity extends AppCompatActivity {
                 sendNotification();
             }
         });
+        findViewById(R.id.button14).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TestLoadDexActivity.class));
+            }
+        });
 
 
     }
@@ -240,6 +250,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 关闭桌面图标
+     *
      * @param c
      */
     private void disableComponentName(ComponentName c) {
