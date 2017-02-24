@@ -65,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
         img3.setScaleType(ImageView.ScaleType.FIT_XY);
         img4.setScaleType(ImageView.ScaleType.FIT_XY);
         img5.setScaleType(ImageView.ScaleType.FIT_XY);
-
-//        ImageLoader.getInstance(this).bindBitmap(imgs[0], img1, 10, 10);
-//        ImageLoader.getInstance(this).bindBitmap(imgs[1], img2, 10, 10);
-//        ImageLoader.getInstance(this).bindBitmap(imgs[2], img3, 10, 10);
-//        ImageLoader.getInstance(this).bindBitmap(imgs[3], img4, 10, 10);
-//        ImageLoader.getInstance(this).bindBitmap(imgs[4], img5, 10, 10);
+//
+//        ImageLoader.getInstance(this).bindBitmap(imgs[0], img1);
+//        ImageLoader.getInstance(this).bindBitmap(imgs[1], img2);
+//        ImageLoader.getInstance(this).bindBitmap(imgs[2], img3);
+//        ImageLoader.getInstance(this).bindBitmap(imgs[3], img4);
+//        ImageLoader.getInstance(this).bindBitmap(imgs[4], img5);
 
         AnimatorSet animSetForSpeaking = new AnimatorSet();
         animSetForSpeaking.setDuration(5000);

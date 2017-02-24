@@ -1,1 +1,1 @@
-include ':app', ':testclassinvoke'
+include ':app', ':testclassinvoke', ':testgreendao', ':testjava'

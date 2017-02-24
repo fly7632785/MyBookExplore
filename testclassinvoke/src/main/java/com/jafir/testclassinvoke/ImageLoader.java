@@ -74,8 +74,6 @@ public class ImageLoader {
             } else {
                 Log.e("debug", "imageview或者bitmap为空或者不是同一个img");
             }
-
-
         }
     };
 
@@ -89,11 +87,19 @@ public class ImageLoader {
 
 
     public void bindBitmap(String url, final ImageView imageView) {
-        bindBitmap(url, imageView, 0, 0);
+        if(imageView == null){
+            return;
+        }
+        Log.d("debug","height  111:"+imageView.getHeight());
+        Log.d("debug","width   111:"+imageView.getWidth());
+        bindBitmap(url, imageView, imageView.getWidth(),imageView.getHeight());
     }
 
 
     public void bindBitmap(final String url, final ImageView imageView, final int width, final int height) {
+        if(imageView == null){
+            return;
+        }
         imageView.setImageBitmap(null);
         /**
          * 绑定tag防止错乱

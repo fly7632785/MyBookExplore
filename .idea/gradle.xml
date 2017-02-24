@@ -10,6 +10,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/testclassinvoke" />
+            <option value="$PROJECT_DIR$/testgreendao" />
+            <option value="$PROJECT_DIR$/testjava" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
